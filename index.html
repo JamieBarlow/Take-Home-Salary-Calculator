@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Take Home Pay Calculator</title>
+    <!-- <link rel="stylesheet" href="reset.css"> -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,24 +19,35 @@
     </header>
     <main>
         <section id="intro">
-            <p>Have you ever wondered how your advertised salary translates into your actual take-home pay, after tax? This
-                calculator is designed for exactly that. Figures are based on Income Tax and National Insurance rates for the
-                2022-23 tax year in the UK. The form will ask you for your 'gross' salary (before tax), your percentage pension
+            <p>Have you ever wondered how your advertised salary translates into your actual take-home pay, after tax?
+                This
+                calculator is designed for exactly that. Figures are based on Income Tax and National Insurance rates
+                for the
+                2022-23 tax year in the UK. The form will ask you for your 'gross' salary (before tax), your percentage
+                pension
                 contribution, and student loan plan (if any).</p>
+            <h2>Enter your details below:</h2>
         </section>
-        <div>
-            <p>Enter your details below:</p>
+        <div id="forms-left">
             <form action="">
-                <label for="yearlyGross">Annual salary (before tax)</label>
-                <input type="text" id="yearlyGross" placeholder="Annual Income (before tax)">
-                <br>
-                <label for="studentPlan">Do you have a Student Loan?</label>
-                <input type="text" id="studentPlan" placeholder="Student Loan">
-                <br>
-                <label for="percentContribution">What is your annual pension contribution (%)?</label>
-                <input type="text" id="percentContribution" placeholder="Pension">
+                <div>
+                    <label for="yearlyGross">Annual salary (before tax)</label>
+                    <input type="text" id="yearlyGross" placeholder="Annual Income (before tax)">
+                </div>
+                <div>
+                    <label for="studentPlan">Do you have a Student Loan?</label>
+                    <input type="text" id="studentPlan" placeholder="Student Loan">
+                </div>
+                <div>
+                    <label for="percentContribution">What is your annual pension contribution (%)?</label>
+                    <input type="text" id="percentContribution" placeholder="Pension">
+                </div>
             </form>
-
+        </div>
+        <div id="blurb">
+            <p>This is a blurb Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui blanditiis voluptatem magni
+                nihil consequatur perferendis fuga nisi explicabo labore, quos eius voluptates corrupti nemo rem illo.
+                Voluptatem asperiores possimus error?</p>
         </div>
     </main>
     <script src="app.js"></script>
