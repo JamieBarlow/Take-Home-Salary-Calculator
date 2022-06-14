@@ -20,7 +20,7 @@ main {
     display: grid;
     background-color: #2d688d;
     width: 80%;
-    height: 400px;
+    height: 80%;
     align-content: center;
     justify-content: center;
     grid-template: repeat(5, 1fr) / repeat(2, 1fr);
@@ -44,7 +44,9 @@ main {
 
 #forms-left form {
     display: flex;
-    align-items: space-around;
+    flex-direction: column;
+    justify-items: space-around;
+    height: 300px;
 }
 
 #forms-left form div:nth-of-type(1) {
@@ -70,4 +72,45 @@ main {
     padding-bottom: 5px;
     margin-bottom: 10px;   
     border-bottom: 2px solid grey;
+}
+
+.info {
+    height: 20px;
+    width: 20px;
+}
+
+[data-tooltip] {
+    position: relative;
+    cursor: default;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+    --scale: 0;
+    position: absolute;
+    bottom: -.25rem;
+    left: 50%;
+    width: max-content;
+    /* max-width: 100%; */
+    content: attr(data-tooltip);
+    background: black;
+    transform: translateX(-50%) translateY(100%) scale(var(--scale));
+    transform-origin: bottom center;
+    transition: 50ms transform;
+    padding: .5rem;
+    border-radius: .3rem;
+    text-align: center;
+}
+
+[data-tooltip]:hover::before {
+    --scale: 1;
+}
+
+input[type="submit"] {
+    height: 40px;
+    width: 50%;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: lightseagreen;
+    border-shadow: 10px;
 }

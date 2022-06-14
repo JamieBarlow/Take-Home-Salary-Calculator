@@ -2,6 +2,7 @@
 let taxYear;
 let selfEmployed = false;
 let yearlyGross = 23000;
+let selfEmployedProfits = 0; //Calculate this by deducting your expenses from your self-employed income
 let studentPlan = "Plan 1";
 let percentContribution = 3;
 const monthlyGross = yearlyGross / 12;
@@ -11,6 +12,8 @@ const monthlyGross = yearlyGross / 12;
 
 //Q: Should I be creating the functions below as declarations (with funcion keyword) or as expressions?
 
+
+// First user input - annual salary before tax
 const calculateTaxableIncome = yearlyGross => {
     let personalAllowance = 12570;
     let taxableIncome = 0;
@@ -38,26 +41,44 @@ const calculateIncomeTax = taxableIncome => {
 }
 let incomeTax = calculateIncomeTax(taxableIncome);
 
-const calculateNationalInsurance = () => {
-    // COMPLICATED: https://www.gov.uk/national-insurance-rates-letters
-    // Will depend on whether self-employed, this is for employed, Class 1.
-    https://www.which.co.uk/money/tax/national-insurance/national-insurance-rates-ajg9u9p48f2f
-    // This will vary for different bands - I'm in category A and between £797.01 to £4189 a month, so 12% of taxable income
-    // For the 2022-23 tax year, employees must pay National Insurance (Class 1) if they earn more than £9,880 in the year.
-    // In September 2021, the government announced plans to introduce a health and social care levy of 1.25 percentage points to be added to UK workers' National Insurance contributions from April 2022. See our news story for the full details.
-    // What is class 2 NI etc?
-    let lowerThreshold = 9568;
+// National Insurance for employed (Class 1)
+const calculateNI = () => {
+    // https://www.gov.uk/national-insurance-rates-letters
+    // This is assuming you're 'Category A', which applies to most employees. 
+    // If you're employed, this will be Class 1
+    // If you're self-employed, you could pay Class 2 and Class 4 National Insurance. 
+    // https://www.which.co.uk/money/tax/national-insurance/national-insurance-rates-ajg9u9p48f2f
+    // 
+    let lowerThreshold = 12570; //From July 2022
     let upperThreshold = 50270;
     let nationalInsurance;
     if (yearlyGross < lowerThreshold) {
         nationalInsurance = 0;
     } else if (yearlyGross < upperThreshold) {
-        nationalInsurance = (yearlyGross - lowerThreshold) * 0.12
+        nationalInsurance = (yearlyGross - lowerThreshold) * 0.1325; //NI for income between thresholds
     } else {
-        nationalInsurance = (upperThreshold - lowerThreshold) * 0.12;
-        nationalInsurance += ((yearlyGross - upperThreshold) * 0.02);
+        nationalInsurance = (upperThreshold - lowerThreshold) * 0.1325; //NI for income between thresholds
+        nationalInsurance += ((yearlyGross - upperThreshold) * 0.0325); //NI for income above upper threshold
     };
     return nationalInsurance;
+}
+
+// NI for self-employed (Class 2 and 4)
+const calculateSelfEmployedNI = () => {
+    let smallProfitsThreshold = 6725; //'SPT, being scrapped'
+    let lowerProfitsLimit = 12570; //'LPL'
+    let class4upper = 50270; // Upper threshold for class 4 NI
+    let class2 = 163.80; //Class 2 NI at flat rate of £3.15 per week
+    let class4 = 0; //Class 4 NI
+    if (selfEmployedProfits < lowerProfitsLimit) {
+        class2 = 0;
+    } else if (selfEmployedProfits <= class4upper) {
+        class4 = (selfEmployedProfits - lowerProfitsLimit) * 0.1025; //10.25% on profits between LPL and £50,270
+    } else if (selfEmployedProfits > class4upper) {
+        class4 = (selfEmployedProfits - lowerProfitsLimit) * 0.1025;
+        class4 += (selfEmployedProfits - class4upper) * 0.0325; //3.25% on profits above £50,270
+    }
+    return class2 + class4;
 }
 
 // Calculated for annual repayments
