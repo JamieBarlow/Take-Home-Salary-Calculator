@@ -32,22 +32,52 @@
                 2022-23 tax year in the UK. The form will ask you for your 'gross' salary (before tax), your percentage
                 pension
                 contribution, and student loan plan (if any).</p>
-            <h2>Enter your details below:</h2>
         </section>
         <div id="forms-left">
-            <form action="">
-                <div>
-                    <label for="yearlyGross">Annual salary (before tax)</label>
-                    <input type="text" id="yearlyGross" placeholder="Annual Income (before tax)">
-                </div>
-                <div>
-                    <label for="studentPlan">Do you have a Student Loan?</label>
-                    <input type="text" id="studentPlan" placeholder="Student Loan">
-                </div>
-                <div>
-                    <label for="percentContribution">What is your annual pension contribution (%)?</label>
-                    <input type="text" id="percentContribution" placeholder="Pension">
-                </div>
+            <form action="/results.html" method="GET">
+                <fieldset>
+                    <legend>Enter your details below:</legend>
+                    <div class="form-input">
+                        <label for="yearlyGross">What is your annual salary (before tax)?
+                            <i>£</i>
+                        </label>
+                        <input type="number" id="yearlyGross" required>
+                        <span data-tooltip="An example!">
+                            <img class="info" src="resources\circle-info-solid.svg">
+                        </span>
+                    </div>
+                    <div>
+                        <label for="studentPlan">Do you have a Student Loan?</label>
+                        <select name="studentLoan" id="studentPlan" required>
+                            <option value="none" selected>None</option>
+                            <option value="plan-1">Plan 1</option>
+                            <option value="plan-2">Plan 2</option>
+                            <option value="plan-4">Plan 4 (Scotland)</option>
+                            <option value="postgrad">Postgraduate Loan</option>
+                        </select>
+                        <span data-tooltip="Another example!">
+                            <img class="info" src="resources\circle-info-solid.svg">
+                        </span>
+                    </div>
+                    <div>
+                        <p>Do you have an employer?
+                            <span data-tooltip="Another example!">
+                                <img class="info" src="resources\circle-info-solid.svg">
+                            </span>
+                        </p>
+                        <input type="radio" name="employment" id="employed" value="employed" required>
+                        <label for="employed">Employed</label>
+                        <input type="radio" name="employment" id="selfemployed" value="self-employed">
+                        <label for="self-employed">Self-Employed</label>
+                    </div>
+                    <div>
+                        <label for="percentContribution">What is your annual pension contribution (%)?</label>
+                        <input type="text" id="percentContribution" placeholder="Pension" required>
+                    </div>
+                    <div>
+                        <input type="submit" value="Calculate" id="">
+                    </div>
+                </fieldset>
             </form>
         </div>
         <div id="blurb">
