@@ -9,81 +9,106 @@
     <!-- <link rel="stylesheet" href="reset.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href=".\node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href=".\node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
+    <header class="row m-2 text-center">
         <h1>Take Home Pay Calculator</h1>
         <nav>
             <!-- Nav elements here -->
         </nav>
     </header>
-    <main>
-        <section id="intro">
-            <p>Have you ever wondered how your advertised salary translates into your actual take-home pay, after tax?
-                This
-                calculator is designed for exactly that. Figures are based on Income Tax and National Insurance rates
-                for the
-                2022-23 tax year in the UK. The form will ask you for your 'gross' salary (before tax), your percentage
-                pension
-                contribution, and student loan plan (if any).</p>
+    <main class="container border border-2 rounded-5 p-2">
+        <section id="intro" class="row">
+            <div class="col mx-3 my-2 border-bottom border-white border-2">
+                <p>Have you ever wondered how your advertised salary translates into your actual take-home pay, after
+                    tax?
+                    This
+                    calculator is designed for exactly that. Figures are based on Income Tax and National Insurance
+                    rates
+                    for the
+                    2022-23 tax year in the UK. The form will ask you for your 'gross' salary (before tax), your
+                    percentage
+                    pension
+                    contribution, and student loan plan (if any).</p>
+            </div>
         </section>
-        <div id="forms-left">
-            <form action="/results.html" method="GET">
-                <fieldset>
-                    <legend>Enter your details below:</legend>
-                    <div class="form-input">
-                        <label for="yearlyGross">What is your annual salary (before tax)?
-                            <i>£</i>
-                        </label>
-                        <input type="number" id="yearlyGross" required>
-                        <span data-tooltip="An example!">
-                            <img class="info" src="resources\circle-info-solid.svg">
-                        </span>
-                    </div>
-                    <div>
-                        <label for="studentPlan">Do you have a Student Loan?</label>
-                        <select name="studentLoan" id="studentPlan" required>
-                            <option value="none" selected>None</option>
-                            <option value="plan-1">Plan 1</option>
-                            <option value="plan-2">Plan 2</option>
-                            <option value="plan-4">Plan 4 (Scotland)</option>
-                            <option value="postgrad">Postgraduate Loan</option>
-                        </select>
-                        <span data-tooltip="Another example!">
-                            <img class="info" src="resources\circle-info-solid.svg">
-                        </span>
-                    </div>
-                    <div>
-                        <p>Do you have an employer?
+        <div class="row container justify-content-around">
+            <div class="col-5 m-3">
+                <form action="/results.html" method="GET">
+                    <fieldset>
+                        <legend>Enter your details below:</legend>
+                        <div class="form-input py-3 border-bottom border-1">
+                            <label for="yearlyGross" class="form-label">What is your annual salary (before
+                                tax)?<i>£</i></label>
+                            <input type="number" class="form-control" id="yearlyGross" required>
+                            <span data-tooltip="An example!">
+                                <img class="info" src="resources\circle-info-solid.svg">
+                            </span>
+                        </div>
+                        <div class="dropdown py-3 my-3 border-bottom border-1">
+                            <label for="studentPlan">Do you have a Student Loan?</label>
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="studentLoan"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                None
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="studentLoan">
+                                <li><a href="#" class="dropdown-item">None</a></li>
+                                <li><a href="#" class="dropdown-item">Plan 1</a></li>
+                                <li><a href="#" class="dropdown-item">Plan 2</a></li>
+                                <li><a href="#" class="dropdown-item">Plan 4 (Scotland)</a></li>
+                                <li><a href="#" class="dropdown-item">Postgraduate Loan</a></li>
+                            </ul>
                             <span data-tooltip="Another example!">
                                 <img class="info" src="resources\circle-info-solid.svg">
                             </span>
-                        </p>
-                        <input type="radio" name="employment" id="employed" value="employed" required>
-                        <label for="employed">Employed</label>
-                        <input type="radio" name="employment" id="selfemployed" value="self-employed">
-                        <label for="self-employed">Self-Employed</label>
-                    </div>
-                    <div>
-                        <label for="percentContribution">What is your annual pension contribution (%)?</label>
-                        <input type="text" id="percentContribution" placeholder="Pension" required>
-                    </div>
-                    <div>
-                        <input type="submit" value="Calculate" id="">
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-        <div id="blurb">
-            <p>This is a blurb Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui blanditiis voluptatem magni
-                nihil consequatur perferendis fuga nisi explicabo labore, quos eius voluptates corrupti nemo rem illo.
-                Voluptatem asperiores possimus error?</p>
+                        </div>
+                        <div class="dropdown py-2 my-3 border-bottom border-1">
+                            <label>Do you have an employer?</label>
+                            <span data-tooltip="Another example!">
+                                <img class="info" src="resources\circle-info-solid.svg">
+                            </span>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Employed
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Self-employed
+                                </label>
+                            </div>
+                        </div>
+                        <div class="py-3 my-3 border-bottom border-1">
+                            <label for="percentContribution">What is your annual pension contribution (%)?</label>
+                            <input type="text" id="percentContribution" placeholder="Pension" required>
+                        </div>
+                        <div>
+                            <input type="submit" value="Calculate" id="">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-6 m-2 pt-5" id="blurb">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima consequatur rerum voluptatum
+                    blanditiis repellat vitae saepe repellendus ad? Animi nobis amet a expedita culpa itaque quidem, aut
+                    eum! Laboriosam, ratione.
+                    Minus, incidunt sunt tempore blanditiis obcaecati excepturi tenetur, quis deserunt error eum debitis
+                    esse expedita! Non, enim praesentium nemo sit modi dolores fuga a repellendus dolorem rem
+                    reprehenderit itaque impedit!
+                    Sint provident numquam nam odio ex voluptatem veniam amet reprehenderit, autem aspernatur corporis,
+                    cumque voluptatibus doloribus placeat optio est sapiente accusantium esse facere? Adipisci ducimus
+                    delectus similique alias velit explicabo?</p>
+            </div>
         </div>
     </main>
     <script src=".\node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
