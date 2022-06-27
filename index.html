@@ -45,11 +45,9 @@
                         <legend>Enter your details below:</legend>
                         <div class="form-input py-3 border-bottom border-1">
                             <label for="yearlyGross" class="form-label">What is your annual salary (before
-                                tax)?<i>£</i></label>
+                                tax)?<br>
+                                <i>£</i></label>
                             <input type="number" class="form-control" id="yearlyGross" required>
-                            <span data-tooltip="An example!">
-                                <img class="info" src="resources\circle-info-solid.svg">
-                            </span>
                         </div>
                         <div class="dropdown py-3 my-3 border-bottom border-1">
                             <label for="studentPlan">Do you have a Student Loan?</label>
@@ -64,15 +62,28 @@
                                 <li><a href="#" class="dropdown-item">Plan 4 (Scotland)</a></li>
                                 <li><a href="#" class="dropdown-item">Postgraduate Loan</a></li>
                             </ul>
-                            <span data-tooltip="Another example!">
-                                <img class="info" src="resources\circle-info-solid.svg">
-                            </span>
+                            <a href="#" data-bs-toggle="tooltip" title="Choose a repayment plan, or 'none' if not applicable" data-bs-placement="right">
+                                <img class="info-icon" src="resources\circle-info-solid.svg">
+                            </a>
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Find Out More
+                                    </button>
+                                  </h2>
+                                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                      <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                  </div>
+                                </div>
                         </div>
                         <div class="dropdown py-2 my-3 border-bottom border-1">
                             <label>Do you have an employer?</label>
-                            <span data-tooltip="Another example!">
-                                <img class="info" src="resources\circle-info-solid.svg">
-                            </span>
+                            <a href="#" data-bs-toggle="tooltip" title="Your National Insurance rates will differ depending on your employment status" data-bs-placement="right">
+                                <img class="info-icon" src="resources\circle-info-solid.svg">
+                            </a>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault"
                                     id="flexRadioDefault1">

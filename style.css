@@ -104,38 +104,6 @@ main {
     color: black;
 }
 
-.info {
-    height: 20px;
-    width: 20px;
-}
-
-[data-tooltip] {
-    position: relative;
-    cursor: default;
-}
-
-[data-tooltip]::before,
-[data-tooltip]::after {
-    --scale: 0;
-    position: absolute;
-    bottom: -.25rem;
-    left: 50%;
-    width: max-content;
-    /* max-width: 100%; */
-    content: attr(data-tooltip);
-    background: black;
-    transform: translateX(-50%) translateY(100%) scale(var(--scale));
-    transform-origin: bottom center;
-    transition: 50ms transform;
-    padding: .5rem;
-    border-radius: .3rem;
-    text-align: center;
-}
-
-[data-tooltip]:hover::before {
-    --scale: 1;
-}
-
 input[type="submit"] {
     height: 40px;
     width: 50%;
@@ -144,3 +112,48 @@ input[type="submit"] {
     background-color: lightseagreen;
     /* border-shadow: 10px; */
 }
+
+.info-icon {
+    height: 20px;
+    width: 20px;
+    position: relative;
+}
+
+
+/* Custom tooltips */
+
+/* .j-tooltip::before, .j-tooltip::after {
+    --scale: 0;
+    --tooltip-color: #333;
+    --arrow-size: 10px;
+    position: absolute;
+    top: -.25rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 50ms transform;
+    transform-origin: bottom center;
+}
+
+.j-tooltip::before {
+    --translate-y: calc(-100% -var(--arrow-size));
+    content: attr(data-tooltip);
+    width: max-content;
+    max-width: 100%;
+    color: white;
+    padding: .5rem;
+    background: var(--tooltip-color);
+    border-radius: .3rem;
+    text-align: center;
+}
+
+.j-tooltip:hover::before, .j-tooltip:hover::after {
+    --scale: 1;
+}
+
+.j-tooltip::after {
+    --translate-y: calc(-1 * var(--arrow-size));
+    content: '';
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
+} */

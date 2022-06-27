@@ -1,3 +1,7 @@
+// Initializing Bootstrap tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 // Change variables according to tax year?
 let taxYear;
 let selfEmployed = false;
