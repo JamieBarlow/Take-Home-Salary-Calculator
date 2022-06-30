@@ -1,247 +1,247 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Take Home Pay Calculator</title>
-        <!-- <link rel="stylesheet" href="reset.css"> -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href=".\node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Home Pay Calculator</title>
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href=".\node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <body>
-        <header class="row m-2 p-2 text-center">
-            <h1>Take Home Pay Calculator</h1>
-            <nav>
-                <!-- Nav elements here -->
-            </nav>
-        </header>
-        <main class="container border border-2 rounded-5 p-2">
-            <section id="intro" class="row">
-                <div class="col mx-3 my-2 border-bottom border-white border-2">
-                    <p>Have you ever wondered how your advertised salary translates into your actual take-home pay, after
-                        tax?
-                        This
-                        calculator is designed for exactly that. Figures are based on Income Tax and National Insurance
-                        rates
-                        for the
-                        2022-23 tax year in the UK. The form will ask you for your 'gross' salary (before tax), your
-                        percentage
-                        pension
-                        contribution, and student loan plan (if any).</p>
-                </div>
-            </section>
-            <div class="container justify-content-around">
-                <form action="/results.html" method="GET">
-                    <fieldset>
-                        <legend>Enter your details below:</legend>
-                        <div id="salary" class="row form-input pb-2 border-bottom border-1">
-                            <div class="col-5 m-2 pt-2">
-                                <label for="yearlyGross" class="form-label">What is your annual salary (before
-                                    tax)?
-                                </label>
-                                <br>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">£</span>
-                                    <input type="number" class="form-control" id="yearlyGross" required>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-5 m-2 pt-2" id="blurb">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima consequatur rerum
-                                    voluptatum
-                                    blanditiis repellat vitae saepe repellendus ad? Animi nobis amet a expedita culpa
-                                    itaque quidem, aut
-                                    eum! Laboriosam, ratione.</p>
-                                <div class="accordion" id="accordionOne">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                Find Out More
-                                            </button>
-                                        </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse"
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionOne">
-                                            <div class="accordion-body">
-                                                <strong>Taxable Income</strong>
-                                                <p>By default, you will have a tax-free Personal Allowance of £12,570
-                                                    per
-                                                    year. Any income above this will be taxable. If you earn over
-                                                    £100,000
-                                                    per year, your personal allowance will be reduced by £1 for every £2
-                                                    earned above £100,000, until the allowance reaches £0.</p>
-                                                <p>Your tax rate will then depend on how much you earn above the
-                                                    Personal
-                                                    Allowance threshold:</p>
-                                                <div class="table-responsive-md">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">Band</th>
-                                                                <th scope="col">Taxable Income</th>
-                                                                <th scope="col">Tax Rate</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">Basic Rate</th>
-                                                                <td>£12,571 to £50,270</td>
-                                                                <td>20%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Higher Rate</th>
-                                                                <td>£50,271 to £150,000</td>
-                                                                <td>40%</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Additional Rate</th>
-                                                                <td>over £150,000</td>
-                                                                <td>45%</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row dropdown py-2 my-3 border-bottom border-1">
-                            <div class="col-5 m-2">
-                                <label for="studentPlan" class="pb-3">Do you have a Student Loan?</label>
-                                <a class="ps-2" href="#" data-bs-toggle="tooltip"
-                                    title="Choose a repayment plan, or 'none' if not applicable" data-bs-placement="right">
-                                    <img class="info-icon" src="resources\circle-info-solid.svg">
-                                </a>
-                                <br>
-                                <button class="btn btn-primary dropdown-toggle w-25" type="button" id="studentPlan"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    None
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="studentLoan">
-                                    <li><a href="#" class="dropdown-item">None</a></li>
-                                    <li><a href="#" class="dropdown-item">Plan 1</a></li>
-                                    <li><a href="#" class="dropdown-item">Plan 2</a></li>
-                                    <li><a href="#" class="dropdown-item">Plan 4 (Scotland)</a></li>
-                                    <li><a href="#" class="dropdown-item">Postgraduate Loan</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-5 m-2">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis eligendi animi quod?
-                                    Similique labore est ad veniam recusandae id dolor pariatur quidem consequatur magnam?
-                                    Ad perferendis dolorum quos cum commodi.</p>
-                                <div class="accordion" id="accordionTwo">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingTwo">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseTwo" aria-expanded="true"
-                                                aria-controls="collapseTwo">
-                                                Find Out More
-                                            </button>
-                                        </h2>
-                                        <div id="collapseTwo" class="accordion-collapse collapse"
-                                            aria-labelledby="headingTwo" data-bs-parent="#accordionTwo">
-                                            <div class="accordion-body">
-                                                <strong>Student Loan Plans</strong><br>How much you repay depends on the <a
-                                                    href="https://www.gov.uk/repaying-your-student-loan/which-repayment-plan-you-are-on">Student
-                                                    Loan plan</a> that you are on. You repay:
-                                                <br><br>
-                                                <strong>Plan 1</strong>
-                                                <ul>
-                                                    <li>9% of earnings above the threshold of £388/wk or £1,682/month
-                                                        (before tax)</li>
-                                                    <li>You currently pay interest of 1.5% on Plan 1.</li>
-                                                </ul>
-
-                                                <strong>Plan 2</strong>
-                                                <ul>
-                                                    <li>9% of earnings above the threshold of £524/wk or £2,274/month
-                                                        (before tax)</li>
-                                                    <li>While studying, interest is 4.5%. From the 5th April after you leave
-                                                        or finish your course, the <a
-                                                            href="https://www.gov.uk/guidance/how-interest-is-calculated-plan-2">interest
-                                                            rate</a> will depend on your income in the current tax year.
-                                                    </li>
-                                                </ul>
-
-                                                <strong>Plan 4</strong>
-                                                <ul>
-                                                    <li>9% of earnings above the threshold of £487/wk or £2,114/month
-                                                        (before tax)</li>
-                                                    <li>You currently pay interest of 1.5% on Plan 4.</li>
-                                                </ul>
-
-                                                <strong>Postgraduate Loan</strong>
-                                                <ul>
-                                                    <li>6% of earnings above the threshold of £403/wk or £1,750/month
-                                                        (before tax)</li>
-                                                    <li>You currently pay interest of 4.5% on Postgraduate Loans.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row dropdown py-2 my-3 border-bottom border-1">
-                            <div class="col-5 m-2">
-                                <label class="pb-4">Do you have an employer?</label>
-                                <a class="ps-2" href="#" data-bs-toggle="tooltip"
-                                    title="Your National Insurance rates will differ depending on your employment status"
-                                    data-bs-placement="right">
-                                    <img class="info-icon" src="resources\circle-info-solid.svg">
-                                </a>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Employed
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Self-employed
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-5 m-2">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem voluptatem,
-                                    accusantium inventore ducimus magni reiciendis dignissimos. Adipisci cupiditate qui,
-                                    pariatur velit tempora laborum ratione cum cumque quidem quaerat iste obcaecati.</p>
-                            </div>
-                        </div>
-                        <div class="row py-2 my-3 border-bottom border-1">
-                            <div class="col-5 m-2">
-                                <label for="percentContribution">What is your annual pension contribution (%)?</label>
-                                <input type="text" id="percentContribution" placeholder="Pension" required>
-                            </div>
-                            <div class="col-5 m-2">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dolorum fugit at
-                                    dolore enim ratione! Incidunt, quasi officia. Eveniet facere excepturi ea delectus odio
-                                    minima quis perferendis! Quam, eius repellendus!</p>
-                            </div>
-                        </div>
-                        <div>
-                            <input type="submit" value="Calculate" id="">
-                        </div>
-                    </fieldset>
-                </form>
+<body>
+    <header class="row m-2 p-2 text-center">
+        <h1>Take Home Pay Calculator</h1>
+        <nav>
+            <!-- Nav elements here -->
+        </nav>
+    </header>
+    <main class="container border border-2 rounded-5 p-2">
+        <section id="intro" class="row">
+            <div class="col mx-3 my-2 border-bottom border-white border-2">
+                <p>Have you ever wondered how your advertised salary translates into your actual take-home pay, after
+                    tax?
+                    This
+                    calculator is designed for exactly that. Figures are based on Income Tax and National Insurance
+                    rates
+                    for the
+                    2022-23 tax year in the UK. The form will ask you for your 'gross' salary (before tax), your
+                    percentage
+                    pension
+                    contribution, and student loan plan (if any).</p>
             </div>
-        </main>
-        <script src=".\node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
-        <script src="app.js"></script>
-    </body>
+        </section>
+        <div class="container justify-content-around">
+            <form method="POST" onsubmit="takeValue()">
+                <fieldset>
+                    <legend>Enter your details below:</legend>
+                    <div id="salary" class="row form-input pb-2 border-bottom border-1">
+                        <div class="col-5 m-2 pt-2">
+                            <label for="yearlyGross" class="form-label">What is your annual salary (before
+                                tax)?
+                            </label>
+                            <br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">£</span>
+                                <input type="number" class="form-control" id="yearlyGross" required>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-5 m-2 pt-2" id="blurb">
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima consequatur rerum
+                                voluptatum
+                                blanditiis repellat vitae saepe repellendus ad? Animi nobis amet a expedita culpa
+                                itaque quidem, aut
+                                eum! Laboriosam, ratione.</p>
+                            <div class="accordion" id="accordionOne">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Find Out More
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionOne">
+                                        <div class="accordion-body">
+                                            <strong>Taxable Income</strong>
+                                            <p>By default, you will have a tax-free Personal Allowance of £12,570
+                                                per
+                                                year. Any income above this will be taxable. If you earn over
+                                                £100,000
+                                                per year, your personal allowance will be reduced by £1 for every £2
+                                                earned above £100,000, until the allowance reaches £0.</p>
+                                            <p>Your tax rate will then depend on how much you earn above the
+                                                Personal
+                                                Allowance threshold:</p>
+                                            <div class="table-responsive-md">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Band</th>
+                                                            <th scope="col">Taxable Income</th>
+                                                            <th scope="col">Tax Rate</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Basic Rate</th>
+                                                            <td>£12,571 to £50,270</td>
+                                                            <td>20%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Higher Rate</th>
+                                                            <td>£50,271 to £150,000</td>
+                                                            <td>40%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Additional Rate</th>
+                                                            <td>over £150,000</td>
+                                                            <td>45%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row dropdown py-2 my-3 border-bottom border-1">
+                        <div class="col-5 m-2">
+                            <label for="studentLoan" class="pb-3">Do you have a Student Loan?</label>
+                            <a class="ps-2" href="#" data-bs-toggle="tooltip"
+                                title="Choose a repayment plan, or 'none' if not applicable" data-bs-placement="right">
+                                <img class="info-icon" src="resources\circle-info-solid.svg">
+                            </a>
+                            <br>
+                            <select class="form-select" aria-label="Student loan plan" id="studentLoan">
+                                <option selected>None</option>
+                                <option value="plan-1">Plan 1</option>
+                                <option value="plan-2">Plan 2</option>
+                                <option value="plan-4">Plan 4 (Scotland)</option>
+                                <option value="postgrad">Postgraduate Loan</option>
+                            </select>
+                        </div>
+                        <div class="col-5 m-2">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis eligendi animi quod?
+                                Similique labore est ad veniam recusandae id dolor pariatur quidem consequatur magnam?
+                                Ad perferendis dolorum quos cum commodi.</p>
+                            <div class="accordion" id="accordionTwo">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseTwo" aria-expanded="true"
+                                            aria-controls="collapseTwo">
+                                            Find Out More
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo" data-bs-parent="#accordionTwo">
+                                        <div class="accordion-body">
+                                            <strong>Student Loan Plans</strong><br>How much you repay depends on the <a
+                                                href="https://www.gov.uk/repaying-your-student-loan/which-repayment-plan-you-are-on">Student
+                                                Loan plan</a> that you are on. You repay:
+                                            <br><br>
+                                            <strong>Plan 1</strong>
+                                            <ul>
+                                                <li>9% of earnings above the threshold of £388/wk or £1,682/month
+                                                    (before tax)</li>
+                                                <li>You currently pay interest of 1.5% on Plan 1.</li>
+                                            </ul>
 
-    </html>
+                                            <strong>Plan 2</strong>
+                                            <ul>
+                                                <li>9% of earnings above the threshold of £524/wk or £2,274/month
+                                                    (before tax)</li>
+                                                <li>While studying, interest is 4.5%. From the 5th April after you leave
+                                                    or finish your course, the <a
+                                                        href="https://www.gov.uk/guidance/how-interest-is-calculated-plan-2">interest
+                                                        rate</a> will depend on your income in the current tax year.
+                                                </li>
+                                            </ul>
+
+                                            <strong>Plan 4</strong>
+                                            <ul>
+                                                <li>9% of earnings above the threshold of £487/wk or £2,114/month
+                                                    (before tax)</li>
+                                                <li>You currently pay interest of 1.5% on Plan 4.</li>
+                                            </ul>
+
+                                            <strong>Postgraduate Loan</strong>
+                                            <ul>
+                                                <li>6% of earnings above the threshold of £403/wk or £1,750/month
+                                                    (before tax)</li>
+                                                <li>You currently pay interest of 4.5% on Postgraduate Loans.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row dropdown py-2 my-3 border-bottom border-1">
+                        <div class="col-5 m-2">
+                            <label class="pb-4">Do you have an employer?</label>
+                            <a class="ps-2" href="#" data-bs-toggle="tooltip"
+                                title="Your National Insurance rates will differ depending on your employment status"
+                                data-bs-placement="right">
+                                <img class="info-icon" src="resources\circle-info-solid.svg">
+                            </a>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employment-status"
+                                    id="employed">
+                                <label class="form-check-label" for="employed">
+                                    Employed
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employment-status"
+                                    id="self-employed" checked>
+                                <label class="form-check-label" for="self-employed">
+                                    Self-employed
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-5 m-2">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem voluptatem,
+                                accusantium inventore ducimus magni reiciendis dignissimos. Adipisci cupiditate qui,
+                                pariatur velit tempora laborum ratione cum cumque quidem quaerat iste obcaecati.</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 my-3 border-bottom border-1">
+                        <div class="col-5 m-2">
+                            <label for="pension-contribution">What is your annual pension contribution (%)?</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="pension-contribution"
+                                    aria-label="Amount (to the nearest dollar)" value="0">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                        <div class="col-5 m-2">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dolorum fugit at
+                                dolore enim ratione! Incidunt, quasi officia. Eveniet facere excepturi ea delectus odio
+                                minima quis perferendis! Quam, eius repellendus!</p>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" value="Calculate" id="">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </main>
+    <script src=".\node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

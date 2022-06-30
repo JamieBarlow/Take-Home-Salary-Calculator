@@ -3,29 +3,42 @@ const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
 // Change variables according to tax year?
-let taxYear;
-let selfEmployed = false;
-let yearlyGross = 23000;
-let selfEmployedProfits = 0; //Calculate this by deducting your expenses from your self-employed income
-let studentPlan = "Plan 1";
-let percentContribution = 3;
-const monthlyGross = yearlyGross / 12;
+// let taxYear;
+// let selfEmployed = false;
+// let yearlyGross = 23000;
+// let selfEmployedProfits = 0; //Calculate this by deducting your expenses from your self-employed income
+// let studentPlan = "Plan 1";
+// let percentContribution = 3;
+// const monthlyGross = yearlyGross / 12;
 // let yearlyNet = 
 // let monthlyGross =
 // let monthlyNet =
 
-//Q: Should I be creating the functions below as declarations (with funcion keyword) or as expressions?
-
+// Extracting values from form
+function takeValue() {
+    let yearlyGross = document.getElementById("yearlyGross").value;
+    let studentPlan = document.getElementById("studentLoan").value;
+    let radios = document.getElementsByName("employment-status");
+    let employment;
+    for (let radio of radios) {
+        if (radio.checked) {
+            employment = radio.value;
+        }
+    }
+    let pension = document.getElementById("pension-contribution").value;
+    document.write(`Your salary: ${yearlyGross}
+    Your employment status: ${employment}
+    Your student loan: ${studentPlan}
+    Your pension contribution: ${pension}`)
+}
 
 // First user input - annual salary before tax
 const calculateTaxableIncome = yearlyGross => {
     let personalAllowance = 12570;
-    let taxableIncome = 0;
-    // For every £2 you earn over £100,000, your personal allowance decreases by £1
     if (yearlyGross > 100000) {
         personalAllowance -= (yearlyGross - 100000) * 0.5;
     }
-    taxableIncome = yearlyGross - personalAllowance;
+    let taxableIncome = yearlyGross - personalAllowance;
     return taxableIncome;
 }
 let taxableIncome = calculateTaxableIncome(yearlyGross);
