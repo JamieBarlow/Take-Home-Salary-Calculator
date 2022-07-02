@@ -23,7 +23,7 @@
             <!-- Nav elements here -->
         </nav>
     </header>
-    <main class="container border border-2 rounded-5 p-2">
+    <main class="container border border-2 rounded-5 p-3 mb-4">
         <section id="intro" class="row">
             <div class="col mx-3 my-2 border-bottom border-white border-2">
                 <p>Have you ever wondered how your advertised salary translates into your actual take-home pay, after
@@ -39,7 +39,7 @@
             </div>
         </section>
         <div class="container justify-content-around">
-            <form method="POST" onsubmit="takeValue()">
+            <form method="GET" action="results.html" onsubmit="getValues()">
                 <fieldset>
                     <legend>Enter your details below:</legend>
                     <div id="salary" class="row form-input pb-2 border-bottom border-1">
@@ -48,7 +48,7 @@
                                 tax)?
                             </label>
                             <br>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3 w-75">
                                 <span class="input-group-text">£</span>
                                 <input type="number" class="form-control" id="yearlyGross" required>
                             </div>
@@ -124,7 +124,7 @@
                                 <img class="info-icon" src="resources\circle-info-solid.svg">
                             </a>
                             <br>
-                            <select class="form-select" aria-label="Student loan plan" id="studentLoan">
+                            <select class="form-select w-75" aria-label="Student loan plan" id="studentLoan">
                                 <option selected>None</option>
                                 <option value="plan-1">Plan 1</option>
                                 <option value="plan-2">Plan 2</option>
@@ -221,7 +221,7 @@
                     <div class="row py-2 my-3 border-bottom border-1">
                         <div class="col-5 m-2">
                             <label for="pension-contribution">What is your annual pension contribution (%)?</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3 w-75 mt-2">
                                 <input type="text" class="form-control" id="pension-contribution"
                                     aria-label="Amount (to the nearest dollar)" value="0">
                                 <span class="input-group-text">%</span>
@@ -233,8 +233,8 @@
                                 minima quis perferendis! Quam, eius repellendus!</p>
                         </div>
                     </div>
-                    <div>
-                        <input type="submit" value="Calculate" id="">
+                    <div class="row m-2">
+                        <button class="btn btn-dark w-25" type="submit">Calculate</button>
                     </div>
                 </fieldset>
             </form>

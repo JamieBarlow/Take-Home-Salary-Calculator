@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href=".\node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="row m-2 p-2 text-center">
+        <h1>Take Home Pay Calculator</h1>
+        <nav>
+            <!-- Nav elements here -->
+        </nav>
+    </header>
+    <main class="container border border-2 rounded-5 p-3 mb-4">
+        <div class="container justify-content-around">
+            <fieldset>
+                <legend>Your results:</legend>
+                <div id="salary" class="row form-input pb-2 border-bottom border-1">
+                    <table class="table table-striped text-white">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" class="bg-transparent"></th>
+                                <th scope="col">Yearly</th>
+                                <th scope="col">Monthly</th>
+                                <th scope="col">Weekly</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-primary">
+                            <tr id="grossIncome" class="table-group-divider">
+                                <th scope="row">Gross Income</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr id="taxableIncome">
+                                <th scope="row">Taxable Income</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr id="tax">
+                                <th scope="row">Tax</th>
+                                <td>Larry the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            <tr id="nationalInsurance">
+                                <th scope="row">National Insurance</th>
+                                <td>Larry the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            <tr id="studentLoan">
+                                <th scope="row">Student Loan</th>
+                                <td>Larry the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            <tr id="pension">
+                                <th scope="row">Pension</th>
+                                <td>Larry the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                        <tfoot class="table-group-divider border-dark">
+                            <tr id="takeHomePay" class="table-success">
+                                <th scope="row">Take Home Pay</th>
+                                <td>Larry the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tfoot>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </main>
+    <script src=".\node_modules\bootstrap\dist\js\bootstrap.bundle.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

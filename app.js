@@ -2,35 +2,52 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-// Change variables according to tax year?
-// let taxYear;
-// let selfEmployed = false;
-// let yearlyGross = 23000;
-// let selfEmployedProfits = 0; //Calculate this by deducting your expenses from your self-employed income
-// let studentPlan = "Plan 1";
-// let percentContribution = 3;
-// const monthlyGross = yearlyGross / 12;
-// let yearlyNet = 
-// let monthlyGross =
-// let monthlyNet =
+let formValues = {};
 
 // Extracting values from form
-function takeValue() {
+function getValues() {
     let yearlyGross = document.getElementById("yearlyGross").value;
+    sessionStorage.setItem("yearlyGross", yearlyGross);
+    let monthlyGross = yearlyGross / 12;
+    sessionStorage.setItem("monthlyGross", monthlyGross);
+    let weeklyGross = monthlyGross / 4;
+    sessionStorage.setItem("weeklyGross", weeklyGross);
     let studentPlan = document.getElementById("studentLoan").value;
     let radios = document.getElementsByName("employment-status");
     let employment;
-    for (let radio of radios) {
-        if (radio.checked) {
-            employment = radio.value;
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[0].checked) {
+            employment = "Employed";
+        } else {
+            employment = "Self-Employed";
         }
     }
-    let pension = document.getElementById("pension-contribution").value;
-    document.write(`Your salary: ${yearlyGross}
-    Your employment status: ${employment}
-    Your student loan: ${studentPlan}
-    Your pension contribution: ${pension}`)
+    
+    return yearlyGross;
 }
+
+// Filling out results form
+document.getElementById("grossIncome").childNodes[3].innerHTML = "£" + sessionStorage.getItem("yearlyGross");
+document.getElementById("grossIncome").childNodes[5].innerHTML = "£" + sessionStorage.getItem("monthlyGross");
+document.getElementById("grossIncome").childNodes[7].innerHTML = "£" + sessionStorage.getItem("weeklyGross");
+document.getElementById("taxableIncome").childNodes[3].innerHTML = "Jamie";
+document.getElementById("taxableIncome").childNodes[5].innerHTML = "Jeff";
+document.getElementById("taxableIncome").childNodes[7].innerHTML = "Jeff"
+document.getElementById("tax").childNodes[3].innerHTML = "Jamie";
+document.getElementById("tax").childNodes[5].innerHTML = "Jeff";
+document.getElementById("tax").childNodes[7].innerHTML = "Jeff";
+document.getElementById("nationalInsurance").childNodes[3].innerHTML = "Jamie";
+document.getElementById("nationalInsurance").childNodes[5].innerHTML = "Jeff";
+document.getElementById("nationalInsurance").childNodes[7].innerHTML = "Jeff";
+document.getElementById("studentLoan").childNodes[3].innerHTML = "Jamie";
+document.getElementById("studentLoan").childNodes[5].innerHTML = "Jeff";
+document.getElementById("studentLoan").childNodes[7].innerHTML = "Jeff";
+document.getElementById("pension").childNodes[3].innerHTML = "Jamie";
+document.getElementById("pension").childNodes[5].innerHTML = "Jeff";
+document.getElementById("pension").childNodes[7].innerHTML = "Jeff";
+document.getElementById("takeHomePay").childNodes[5].innerHTML = "Jeff";
+document.getElementById("takeHomePay").childNodes[3].innerHTML = "Jamie";
+document.getElementById("takeHomePay").childNodes[7].innerHTML = "Jeff";
 
 // First user input - annual salary before tax
 const calculateTaxableIncome = yearlyGross => {
@@ -41,7 +58,7 @@ const calculateTaxableIncome = yearlyGross => {
     let taxableIncome = yearlyGross - personalAllowance;
     return taxableIncome;
 }
-let taxableIncome = calculateTaxableIncome(yearlyGross);
+// let taxableIncome = calculateTaxableIncome(yearlyGross);
 
 const calculateIncomeTax = taxableIncome => {
     let incomeTax = 0;
@@ -124,7 +141,7 @@ const calculateStudentLoan = (yearlyGross, studentPlan) => {
     }
     return repayment;
 }
-let studentLoan = calculateStudentLoan(yearlyGross, studentPlan);
+// let studentLoan = calculateStudentLoan(yearlyGross, studentPlan);
 
 // Annual pension payments
 const calculatePension = percentContribution => {
@@ -142,10 +159,10 @@ const calculatePension = percentContribution => {
     }
     return pension;
 }
-let pension = calculatePension(percentContribution);
+// let pension = calculatePension(percentContribution);
 
 // Net income (take-home pay after taxes)
-let yearlyNet = yearlyGross - incomeTax - calculateNationalInsurance - studentLoan - pension;
+// let yearlyNet = yearlyGross - incomeTax - calculateNationalInsurance - studentLoan - pension;
 
 // let nationalInsurance =
 // let incomeTax =
