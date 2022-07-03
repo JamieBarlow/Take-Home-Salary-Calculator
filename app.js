@@ -89,7 +89,7 @@ function getValues() {
     formValues.weeklyPension = makeWeekly(formValues.yearlyPension);
     sessionStorage.setItem("weeklyPension", formValues.weeklyPension);
     //Take Home Pay
-    let takeHomePay = formValues.yearlyGross - formValues.yearlyTax - formValues.niYearly - formValues.yearlyStudentLoan - formValues.yearlyPension;
+    let takeHomePay = (formValues.yearlyGross - formValues.yearlyTax - formValues.niYearly - formValues.yearlyStudentLoan - formValues.yearlyPension).toFixed(2);
     formValues.takeHomePay = takeHomePay;
     sessionStorage.setItem("yearlyTakeHome", addCommaSeparator(takeHomePay));
     formValues.monthlyTakeHome = makeMonthly(takeHomePay);
