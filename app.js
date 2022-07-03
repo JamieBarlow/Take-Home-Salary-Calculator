@@ -4,15 +4,38 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 //Utility functions to convert annual figures to monthly / weekly figures with comma separators
 let makeMonthly = yearly => {
-    return Number((yearly / 12).toFixed(2)).toLocaleString("en-US");
+    return Number((yearly / 12).toFixed(2)).toLocaleString("en-US", {maximumFractionDigits: 2, minimumFractionDigits: 2});
 }
 
 let makeWeekly = yearly => {
-    return Number((yearly / 52.2).toFixed(2)).toLocaleString("en-US");
+    return Number((yearly / 52.2).toFixed(2)).toLocaleString("en-US", {maximumFractionDigits: 2, minimumFractionDigits: 2});
 }
 
-let addCommaSeparator = number => {
-    return Number(number.toFixed(2)).toLocaleString("en-US");
+let addCommaSeparator = yearly => {
+    //Splitting number before decimal (if it exists) and number after
+    yearly = yearly.toString();
+    let whole = "", afterDec = "";
+    dot = yearly.indexOf(".");
+    if (dot !== -1) {
+        whole = yearly.substring(0, dot);
+        afterDec = yearly.substring(dot);
+    }
+    //Adding commas per thousand (3 digits)
+    if (whole.length > 3) {
+        let newNum = "";
+        let j = 0;
+        for (let i = whole.length-1; i>=0; i--) {
+            newNum = whole[i] + newNum;
+            j++;
+            if (j % 3 === 0 && i !== 0) {
+                newNum = "," + newNum;
+            }
+        }
+        whole = newNum;
+    }
+    //Recombining whole and decimals
+    yearly = whole + afterDec;
+    return yearly;
 }
 
 // Object containing form values
@@ -21,7 +44,8 @@ let formValues = {};
 // Extracting values from form
 function getValues() {
     //Gross income
-    formValues.yearlyGross = Number(document.getElementById("yearlyGross").value);
+    let yearlyGross = document.getElementById("yearlyGross").value;
+    formValues.yearlyGross = yearlyGross;
     sessionStorage.setItem("yearlyGross", formValues.yearlyGross);
     formValues.monthlyGross = makeMonthly(formValues.yearlyGross);
     sessionStorage.setItem("monthlyGross", formValues.monthlyGross);
@@ -29,21 +53,21 @@ function getValues() {
     sessionStorage.setItem("weeklyGross", formValues.weeklyGross);
     //Taxable income
     formValues.yearlyTaxable = calculateTaxableIncome(formValues.yearlyGross);
-    sessionStorage.setItem("yearlyTaxable", formValues.yearlyTaxable);
+    sessionStorage.setItem("yearlyTaxable", addCommaSeparator(formValues.yearlyTaxable));
     formValues.monthlyTaxable = makeMonthly(formValues.yearlyTaxable);
     sessionStorage.setItem("monthlyTaxable", formValues.monthlyTaxable);
     formValues.weeklyTaxable = makeWeekly(formValues.yearlyTaxable);
     sessionStorage.setItem("weeklyTaxable", formValues.weeklyTaxable);
     //Tax
     formValues.yearlyTax = calculateIncomeTax(formValues.yearlyGross);
-    sessionStorage.setItem("yearlyTax", formValues.yearlyTax);
+    sessionStorage.setItem("yearlyTax", addCommaSeparator(formValues.yearlyTax));
     formValues.monthlyTax = makeMonthly(formValues.yearlyTax);
     sessionStorage.setItem("monthlyTax", formValues.monthlyTax);
     formValues.weeklyTax = makeWeekly(formValues.yearlyTax);
     sessionStorage.setItem("weeklyTax", formValues.weeklyTax);
     //National Insurance
     formValues.niYearly = calculateNI(formValues.yearlyGross);
-    sessionStorage.setItem("niYearly", formValues.niYearly);
+    sessionStorage.setItem("niYearly", addCommaSeparator(formValues.niYearly));
     formValues.niMonthly = makeMonthly(formValues.niYearly);
     sessionStorage.setItem("niMonthly", formValues.niMonthly);
     formValues.niWeekly = makeWeekly(formValues.niYearly);
@@ -51,7 +75,7 @@ function getValues() {
     //Student Loan
     let studentPlan = document.getElementById("studentLoan").value;
     formValues.yearlyStudentLoan = calculateStudentLoan(formValues.yearlyGross, studentPlan);
-    sessionStorage.setItem("yearlyStudentLoan", formValues.yearlyStudentLoan);
+    sessionStorage.setItem("yearlyStudentLoan", addCommaSeparator(formValues.yearlyStudentLoan));
     formValues.monthlyStudentLoan = makeMonthly(formValues.yearlyStudentLoan);
     sessionStorage.setItem("monthlyStudentLoan", formValues.monthlyStudentLoan);
     formValues.weeklyStudentLoan = makeWeekly(formValues.yearlyStudentLoan);
@@ -59,14 +83,19 @@ function getValues() {
     //Pension
     let pension = document.getElementById("pension-contribution").value;
     formValues.yearlyPension = calculatePension(formValues.yearlyGross, pension);
-    sessionStorage.setItem("yearlyPension", formValues.yearlyPension);
+    sessionStorage.setItem("yearlyPension", addCommaSeparator(formValues.yearlyPension));
     formValues.monthlyPension = makeMonthly(formValues.yearlyPension);
     sessionStorage.setItem("monthlyPension", formValues.monthlyPension);
     formValues.weeklyPension = makeWeekly(formValues.yearlyPension);
     sessionStorage.setItem("weeklyPension", formValues.weeklyPension);
     //Take Home Pay
-    let takeHomePay = formValues.yearlyTax;
-    console.log(yearlyGross);
+    let takeHomePay = formValues.yearlyGross - formValues.yearlyTax - formValues.niYearly - formValues.yearlyStudentLoan - formValues.yearlyPension;
+    formValues.takeHomePay = takeHomePay;
+    sessionStorage.setItem("yearlyTakeHome", addCommaSeparator(takeHomePay));
+    formValues.monthlyTakeHome = makeMonthly(takeHomePay);
+    sessionStorage.setItem("monthlyTakeHome", formValues.monthlyTakeHome);
+    formValues.weeklyTakeHome = makeWeekly(takeHomePay);
+    sessionStorage.setItem("weeklyTakeHome", formValues.weeklyTakeHome);
     //Employment Status
     let radios = document.getElementsByName("employment-status");
     let employment;
@@ -79,7 +108,8 @@ function getValues() {
     }
 }
 
-let calculateTaxableIncome = salary => {
+
+function calculateTaxableIncome(salary) {
     let personalAllowance = 12570;
     if (salary > 100000) {
         personalAllowance -= (salary - 100000) * 0.5;
@@ -182,11 +212,9 @@ document.getElementById("studentLoan").childNodes[7].innerHTML = "£" + sessionS
 document.getElementById("pension").childNodes[3].innerHTML = "£" + sessionStorage.getItem("yearlyPension");
 document.getElementById("pension").childNodes[5].innerHTML = "£" + sessionStorage.getItem("monthlyPension");
 document.getElementById("pension").childNodes[7].innerHTML = "£" + sessionStorage.getItem("weeklyPension");
-document.getElementById("takeHomePay").childNodes[3].innerHTML = takeHomePay;
-document.getElementById("takeHomePay").childNodes[5].innerHTML = "Jamie";
-document.getElementById("takeHomePay").childNodes[7].innerHTML = "Jeff";
-
-
+document.getElementById("takeHomePay").childNodes[3].innerHTML = "£" + sessionStorage.getItem("yearlyTakeHome");
+document.getElementById("takeHomePay").childNodes[5].innerHTML = "£" + sessionStorage.getItem("monthlyTakeHome");
+document.getElementById("takeHomePay").childNodes[7].innerHTML = "£" + sessionStorage.getItem("weeklyTakeHome");
 
 
 // NI for self-employed (Class 2 and 4)
