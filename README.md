@@ -13,3 +13,7 @@ By Jamie Barlow
 - Currently the option to select 'self-employed' or 'employed' does not affect any of the calculations - this feature is upcoming.
 - National Insurance calculations have been simplified - most employees are in 'category A,' but calculations will vary depending on their [National Insurance Rate Category](https://www.gov.uk/national-insurance-rates-letters/category-letters). I would like to add this as an optional element in future, but have left this as default for simplicity.
 - This is a UK-only salary / tax calculator - tax systems vary greatly per country.
+
+## License
+
+- [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html)
