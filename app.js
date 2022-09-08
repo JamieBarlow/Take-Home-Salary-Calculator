@@ -22,6 +22,7 @@ let formValues = {};
 function getValues() {
     //Gross income
     formValues.yearlyGross = Number(document.getElementById("yearlyGross").value);
+    let yearlyGross = formValues.yearlyGross;
     sessionStorage.setItem("yearlyGross", formValues.yearlyGross);
     formValues.monthlyGross = makeMonthly(formValues.yearlyGross);
     sessionStorage.setItem("monthlyGross", formValues.monthlyGross);
@@ -65,8 +66,10 @@ function getValues() {
     formValues.weeklyPension = makeWeekly(formValues.yearlyPension);
     sessionStorage.setItem("weeklyPension", formValues.weeklyPension);
     //Take Home Pay
-    let takeHomePay = formValues.yearlyTax;
-    console.log(yearlyGross);
+    let takeHomePay = (formValues.yearlyGross - formValues.yearlyTax - formValues.niYearly - formValues.yearlyStudentLoan - formValues.yearlyPension).toFixed(2).toLocaleString("en-US");
+    sessionStorage.setItem("yearlyTakeHomePay", takeHomePay);
+    sessionStorage.setItem("monthlyTakeHomePay", makeMonthly(takeHomePay));
+    sessionStorage.setItem("weeklyTakeHomePay", makeWeekly(takeHomePay));
     //Employment Status
     let radios = document.getElementsByName("employment-status");
     let employment;
@@ -125,19 +128,19 @@ const calculateNI = salary => {
 const calculateStudentLoan = (salary, plan) => {
     let repayment = 0;
     let monthlyGross = salary / 12;
-    if (plan = "plan-1") {
+    if (plan === "plan-1") {
         if (monthlyGross > 1682) {
             repayment = (monthlyGross - 1682) * 12 * 0.09;
         }
-    } else if (plan = "plan-2") {
+    } else if (plan === "plan-2") {
         if (monthlyGross > 2274) {
             repayment = (monthlyGross - 2274) * 12 * 0.09;
         }
-    } else if (plan = "plan-4") {
+    } else if (plan === "plan-4") {
         if (monthlyGross > 2114) {
             repayment = (monthlyGross - 2114) * 12 * 0.09;
         }
-    } else if (plan = "postgrad") {
+    } else if (plan === "postgrad") {
         if (monthlyGross > 1750) {
             repayment = (monthlyGross - 1750) * 12 * 0.06;
         }
@@ -182,9 +185,9 @@ document.getElementById("studentLoan").childNodes[7].innerHTML = "£" + sessionS
 document.getElementById("pension").childNodes[3].innerHTML = "£" + sessionStorage.getItem("yearlyPension");
 document.getElementById("pension").childNodes[5].innerHTML = "£" + sessionStorage.getItem("monthlyPension");
 document.getElementById("pension").childNodes[7].innerHTML = "£" + sessionStorage.getItem("weeklyPension");
-document.getElementById("takeHomePay").childNodes[3].innerHTML = takeHomePay;
-document.getElementById("takeHomePay").childNodes[5].innerHTML = "Jamie";
-document.getElementById("takeHomePay").childNodes[7].innerHTML = "Jeff";
+document.getElementById("takeHomePay").childNodes[3].innerHTML = "£" + sessionStorage.getItem("yearlyTakeHomePay");
+document.getElementById("takeHomePay").childNodes[5].innerHTML = "£" + sessionStorage.getItem("monthlyTakeHomePay");
+document.getElementById("takeHomePay").childNodes[7].innerHTML = "£" + sessionStorage.getItem("weeklyTakeHomePay");
 
 
 
